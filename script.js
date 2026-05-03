@@ -776,19 +776,19 @@ function renderContact() {
         <p>Atendimento de segunda a sexta, das 9h as 18h.</p>
       </div>
 
-      <form class="contact-form" id="contactForm">
+      <form class="contact-form" id="contactForm" action="https://formspree.io/f/xbdwdqbz" method="POST">
         <h2>Enviar mensagem</h2>
         <label>
           Nome
-          <input type="text" required>
+          <input type="text" name="nome" required>
         </label>
         <label>
           E-mail
-          <input type="email" required>
+          <input type="email" name="email" required>
         </label>
         <label>
           Assunto
-          <select required>
+          <select name="assunto" required>
             <option value="">Selecione</option>
             <option>Pedido sob medida</option>
             <option>Duvida sobre produto</option>
@@ -797,7 +797,7 @@ function renderContact() {
         </label>
         <label>
           Mensagem
-          <textarea rows="5" required></textarea>
+          <textarea name="mensagem" rows="5" required></textarea>
         </label>
         <button class="primary-button" type="submit">Enviar</button>
       </form>
@@ -1051,8 +1051,23 @@ function bindEvents() {
 
     if (event.target.id === "contactForm") {
       event.preventDefault();
-      event.target.reset();
-      showToast("Mensagem recebida. A Ebanus retorna pelo contato informado.");
+      const form = event.target;
+      const data = new FormData(form);
+
+      fetch(form.action, {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" },
+      })
+        .then((res) => {
+          if (res.ok) {
+            form.reset();
+            showToast("Mensagem recebida. A Ebanus retorna pelo contato informado.");
+          } else {
+            showToast("Erro ao enviar. Tente novamente.");
+          }
+        })
+        .catch(() => showToast("Erro ao enviar. Verifique sua conexao."));
     }
   });
 
