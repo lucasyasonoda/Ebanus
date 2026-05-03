@@ -304,10 +304,10 @@ function renderShell() {
           <i data-lucide="message-circle" aria-hidden="true"></i>
           Fale Conosco
         </a>
-        <span>Telefone: (31) 98888-2026</span>
-        <a href="https://wa.me/5531988882026" class="contact-link">
+        <span>Telefone: (17) 98103-2249</span>
+        <a href="https://wa.me/5517981032249" class="contact-link">
           <i data-lucide="phone" aria-hidden="true"></i>
-          WhatsApp: (31) 98888-2026
+          WhatsApp: (17) 98103-2249
         </a>
       </div>
 
@@ -396,7 +396,7 @@ function renderShell() {
       </div>
       <div>
         <h3>Atendimento</h3>
-        <a href="tel:+5531988882026">(31) 98888-2026</a>
+        <a href="tel:+5517981032249">(17) 98103-2249</a>
         <a href="mailto:contato@ebanusmadeira.com.br">contato@ebanusmadeira.com.br</a>
         <span>Segunda a sexta, 9h as 18h</span>
       </div>
@@ -428,7 +428,7 @@ function renderShell() {
           <strong id="cartTotal">R$ 0,00</strong>
         </div>
         <a href="carrinho.html" class="secondary-link">Ver carrinho completo</a>
-        <a href="https://wa.me/5531988882026" id="checkoutLink" class="primary-button full">
+        <a href="https://wa.me/5517981032249" id="checkoutLink" class="primary-button full">
           <i data-lucide="send" aria-hidden="true"></i>
           Finalizar no WhatsApp
         </a>
@@ -761,13 +761,13 @@ function renderContact() {
     <section class="contact-layout">
       <div class="contact-panel">
         <h2>Canais de atendimento</h2>
-        <a href="https://wa.me/5531988882026">
+        <a href="https://wa.me/5517981032249">
           <i data-lucide="message-circle" aria-hidden="true"></i>
-          WhatsApp: (31) 98888-2026
+          WhatsApp: (17) 98103-2249
         </a>
-        <a href="tel:+5531988882026">
+        <a href="tel:+5517981032249">
           <i data-lucide="phone" aria-hidden="true"></i>
-          Telefone: (31) 98888-2026
+          Telefone: (17) 98103-2249
         </a>
         <a href="mailto:contato@ebanusmadeira.com.br">
           <i data-lucide="mail" aria-hidden="true"></i>
@@ -780,15 +780,15 @@ function renderContact() {
         <h2>Enviar mensagem</h2>
         <label>
           Nome
-          <input type="text" name="nome" required>
+          <input type="text" required>
         </label>
         <label>
           E-mail
-          <input type="email" name="email" required>
+          <input type="email" required>
         </label>
         <label>
           Assunto
-          <select name="assunto" required>
+          <select required>
             <option value="">Selecione</option>
             <option>Pedido sob medida</option>
             <option>Duvida sobre produto</option>
@@ -797,7 +797,7 @@ function renderContact() {
         </label>
         <label>
           Mensagem
-          <textarea name="mensagem" rows="5" required></textarea>
+          <textarea rows="5" required></textarea>
         </label>
         <button class="primary-button" type="submit">Enviar</button>
       </form>
@@ -833,7 +833,7 @@ function renderCartPage() {
           <span>Total</span>
           <strong id="cartPageTotal">R$ 0,00</strong>
         </div>
-        <a href="https://wa.me/5531988882026" id="cartPageCheckout" class="primary-button full">
+        <a href="https://wa.me/5517981032249" id="cartPageCheckout" class="primary-button full">
           Finalizar no WhatsApp
         </a>
       </aside>
@@ -963,7 +963,7 @@ function cartItemsMarkup(entries, large = false) {
 
 function whatsappProductLink(product) {
   const message = `Oi, quero tirar uma duvida sobre ${product.name} (${product.id}).`;
-  return `https://wa.me/5531988882026?text=${encodeURIComponent(message)}`;
+  return `https://wa.me/5517981032249?text=${encodeURIComponent(message)}`;
 }
 
 function whatsappCheckoutLink(entries, total) {
@@ -973,7 +973,7 @@ function whatsappCheckoutLink(entries, total) {
         .join("\n")}\nTotal: ${money.format(total)}`
     : "Oi, quero conhecer os produtos da Ebanus.";
 
-  return `https://wa.me/5531988882026?text=${encodeURIComponent(message)}`;
+  return `https://wa.me/5517981032249?text=${encodeURIComponent(message)}`;
 }
 
 function openCart() {
