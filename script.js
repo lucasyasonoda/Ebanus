@@ -357,6 +357,31 @@ function renderShell() {
     </header>
   `;
 
+  // Mobile menu drawer
+  const categoryLinks = categories
+    .map((category) => {
+      const isActive = activeCategory === category.slug ? "active" : "";
+      return `<a class="mobile-nav-item ${isActive}" href="${category.href}">${category.label}</a>`;
+    })
+    .join("");
+
+  const drawerHtml = `
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    <aside class="mobile-menu-drawer" id="mobileMenuDrawer" aria-label="Menu de categorias" aria-hidden="true">
+      <div class="mobile-menu-header">
+        <p class="eyebrow">Categorias</p>
+        <button class="icon-button" type="button" id="mobileMenuClose" aria-label="Fechar menu">
+          <i data-lucide="x" aria-hidden="true"></i>
+        </button>
+      </div>
+      <nav class="mobile-menu-nav">
+        ${categoryLinks}
+      </nav>
+    </aside>
+  `;
+
+  document.body.insertAdjacentHTML("beforeend", drawerHtml);
+
   document.querySelector("#siteFooter").innerHTML = `
     <footer class="site-footer" id="contato">
       <div>
@@ -1032,20 +1057,43 @@ function bindEvents() {
   });
 
   const menuToggle = document.querySelector(".menu-toggle");
-  const categoryNav = document.querySelector("#categoryNav");
 
-  if (menuToggle && categoryNav) {
-    menuToggle.addEventListener("click", () => {
-      const expanded = menuToggle.getAttribute("aria-expanded") === "true";
-      menuToggle.setAttribute("aria-expanded", String(!expanded));
-      categoryNav.classList.toggle("open", !expanded);
-      categoryNav.scrollIntoView({ behavior: "smooth", block: "nearest" });
-    });
+  function openMobileMenu() {
+    const drawer = document.querySelector("#mobileMenuDrawer");
+    const overlay = document.querySelector("#mobileMenuOverlay");
+    if (!drawer || !overlay) return;
+    drawer.classList.add("open");
+    drawer.setAttribute("aria-hidden", "false");
+    overlay.classList.add("open");
+    document.body.classList.add("drawer-open");
+    if (menuToggle) menuToggle.setAttribute("aria-expanded", "true");
   }
+
+  function closeMobileMenu() {
+    const drawer = document.querySelector("#mobileMenuDrawer");
+    const overlay = document.querySelector("#mobileMenuOverlay");
+    if (!drawer || !overlay) return;
+    drawer.classList.remove("open");
+    drawer.setAttribute("aria-hidden", "true");
+    overlay.classList.remove("open");
+    document.body.classList.remove("drawer-open");
+    if (menuToggle) menuToggle.setAttribute("aria-expanded", "false");
+  }
+
+  if (menuToggle) {
+    menuToggle.addEventListener("click", openMobileMenu);
+  }
+
+  document.addEventListener("click", (event) => {
+    if (event.target.id === "mobileMenuOverlay" || event.target.closest("#mobileMenuClose")) {
+      closeMobileMenu();
+    }
+  });
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       closeCart();
+      closeMobileMenu();
     }
   });
 }
